@@ -1,0 +1,28 @@
+#define pb push_back
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>> result;//will store the result this 
+        sort(intervals.begin(),intervals.end());// sort the intervals array 
+        int st=intervals[0][0];
+        vector<int> temp;
+        temp.pb(st);
+        int end=intervals[0][1];
+        for(int i=1;i<intervals.size();i++){
+            if(intervals[i][0]<=end){
+                end=max(end,intervals[i][1]);
+            }
+            else{
+                temp.pb(end);
+                result.pb(temp);
+                temp.clear();
+                temp.pb(intervals[i][0]);
+                end=intervals[i][1];
+            }
+        }
+        temp.pb(end);
+        result.pb(temp);
+        return result;
+        
+    }
+};
