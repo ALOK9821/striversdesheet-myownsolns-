@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {//kadanes algorithm
+        int res=nums[0];//assuming thye first index element to be the maximumm sum 
+        int n=nums.size();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            if(sum<0)sum=0;// it at a point the sum goes negative then there is no point in keeping the sum 
+            sum+=nums[i];
+            res=max(res,sum);//upadting the result by the sum
+        }
+        return res;
+    }
+};
